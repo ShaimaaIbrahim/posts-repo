@@ -1,0 +1,11 @@
+{
+  "@@locale": "ar",
+  "home": "",
+  "searchPosts": "",
+  "clear": "",
+  "itemsInSearch": "Found {itemCount} results for \"{searchText}\"",
+  "settings": "الإعدادات",
+  "changeLanguage": "تغيير اللغة",
+  "english": "الإنجليزية",
+  "arabic": "العربية"
+}

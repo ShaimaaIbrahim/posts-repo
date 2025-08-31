@@ -1,0 +1,18 @@
+{
+  "@@locale": "en",
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "The classic welcome message."
+  },
+  "welcomeMessage": "Welcome, {name}!",
+  "@welcomeMessage": {
+    "description": "A personalized welcome message.",
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "settings": "Settings",
+  "changeLanguage": "Change Language",
+  "english": "English",
+  "arabic": "Arabic"
+}
