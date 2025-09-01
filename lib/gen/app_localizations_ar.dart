@@ -9,21 +9,32 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get helloWorld => 'مرحباً بالعالم!';
+  String get helloWorld => 'Hello World!';
 
   @override
   String welcomeMessage(Object name) {
-    return 'أهلاً وسهلاً، $name!';
+    return 'Welcome, $name!';
   }
+
+  @override
+  String get home => 'الرئيسية';
 
   @override
   String get settings => 'الإعدادات';
 
   @override
-  String get changeLanguage => 'تغيير اللغة';
+  String get language => 'اللغة';
 
   @override
-  String get english => 'الإنجليزية';
+  String itemsInSearch(Object itemCount, Object searchText) {
+    return 'Found $itemCount results for \"$searchText\"';
+  }
+
+  @override
+  String get changeLanguage => 'اختر لغتك المفضلة:';
+
+  @override
+  String get english => 'English';
 
   @override
   String get arabic => 'العربية';

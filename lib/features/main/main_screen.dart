@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:posts_repo/features/home/views/screens/home_screen.dart';
 import 'package:posts_repo/features/settings/views/screens/settings_screen.dart';
+import 'package:posts_repo/gen/app_localizations.dart';
 
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends HookWidget {
   const MainScreen({super.key});
 
   @override
@@ -66,8 +67,8 @@ class MainScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                buildNavItem(0, Icons.home_outlined, "Home"),
-                buildNavItem(1, Icons.settings, "Settings"),
+                buildNavItem(0, Icons.home_outlined, AppLocalizations.of(context)!.home),
+                buildNavItem(1, Icons.settings, AppLocalizations.of(context)!.settings),
               ],
             )
           ],

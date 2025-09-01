@@ -110,16 +110,34 @@ abstract class AppLocalizations {
   /// **'Welcome, {name}!'**
   String welcomeMessage(Object name);
 
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
 
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @itemsInSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Found {itemCount} results for \"{searchText}\"'**
+  String itemsInSearch(Object itemCount, Object searchText);
+
   /// No description provided for @changeLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Change Language'**
+  /// **'Choose your prefered language:'**
   String get changeLanguage;
 
   /// No description provided for @english.
@@ -131,7 +149,7 @@ abstract class AppLocalizations {
   /// No description provided for @arabic.
   ///
   /// In en, this message translates to:
-  /// **'Arabic'**
+  /// **'العربية'**
   String get arabic;
 }
 

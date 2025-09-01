@@ -4,8 +4,12 @@
   "searchPosts": "",
   "clear": "",
   "itemsInSearch": "Found {itemCount} results for \"{searchText}\"",
+  "home": "الرئيسية",
   "settings": "الإعدادات",
-  "changeLanguage": "تغيير اللغة",
-  "english": "الإنجليزية",
-  "arabic": "العربية"
+  "changeLanguage": "اختر لغتك المفضلة:",
+  "language": "اللغة",
+  "english": "English",
+  "arabic": "العربية",
+  "clear":""
+  
 }

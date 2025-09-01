@@ -13,9 +13,11 @@ class NumberCard extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(8)),
         color: AppColors.primaryColor
       ),
+      padding: EdgeInsets.all(8),
       child: CustomText(
         '$id',
         fontSize: 16,
+        color: AppColors.white,
         fontWeight: FontWeight.bold,
       )
     );

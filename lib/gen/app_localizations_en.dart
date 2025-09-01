@@ -17,14 +17,25 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get home => 'Home';
+
+  @override
   String get settings => 'Settings';
 
   @override
-  String get changeLanguage => 'Change Language';
+  String get language => 'Language';
+
+  @override
+  String itemsInSearch(Object itemCount, Object searchText) {
+    return 'Found $itemCount results for \"$searchText\"';
+  }
+
+  @override
+  String get changeLanguage => 'Choose your prefered language:';
 
   @override
   String get english => 'English';
 
   @override
-  String get arabic => 'Arabic';
+  String get arabic => 'العربية';
 }

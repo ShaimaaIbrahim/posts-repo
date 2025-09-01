@@ -2,22 +2,25 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import 'api_endpoints.dart';
 import 'exceptions.dart';
 
 class NetworkManager {
-  final String baseUrl;
-  final http.Client _client;
-  final Map<String, String> _defaultHeaders;
+   late String baseUrl;
+   late http.Client _client;
+   late Map<String, String> _defaultHeaders;
 
-  NetworkManager({
-    required this.baseUrl,
-    http.Client? client,
-    Map<String, String>? defaultHeaders,
-  })  : _client = client ?? http.Client(),
-        _defaultHeaders = defaultHeaders ?? {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        };
+
+  static final NetworkManager instance = NetworkManager._internal();
+
+  NetworkManager._internal() {
+     baseUrl = ApiEndpoints.baseUrl;
+    _client =  http.Client();
+    _defaultHeaders =  {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    };
+  }
 
   // Main request method
   Future<dynamic> _request({

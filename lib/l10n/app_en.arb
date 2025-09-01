@@ -11,8 +11,12 @@
       "name": {}
     }
   },
+  "home": "Home",
   "settings": "Settings",
-  "changeLanguage": "Change Language",
+  "language": "Language",
+  "itemsInSearch": "Found {itemCount} results for \"{searchText}\"",
+  "changeLanguage": "Choose your prefered language:",
   "english": "English",
-  "arabic": "Arabic"
+  "arabic": "العربية",
+  "clear": "Clear",
 }

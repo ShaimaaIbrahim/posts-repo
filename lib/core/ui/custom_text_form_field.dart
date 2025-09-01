@@ -153,16 +153,16 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final defaultBorder = OutlineInputBorder(
-    //   borderRadius: BorderRadius.circular(borderRadius!),
-    //   borderSide: BorderSide(color: Colors.grey.shade400),
-    // );
+    final defaultBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(borderRadius!),
+      borderSide: BorderSide(color: Colors.grey.shade400),
+    );
 
     return Container(
       margin: margin,
       decoration: BoxDecoration(
           color: AppColors.grayColor,
-          borderRadius: BorderRadius.all(Radius.circular(8))
+          borderRadius: BorderRadius.all(Radius.circular(10))
       ),
       child: TextFormField(
         controller: controller,
@@ -181,17 +181,17 @@ class CustomTextField extends StatelessWidget {
           fillColor: fillColor,
           border: InputBorder.none,
           //border: border ?? defaultBorder,
-          //enabledBorder: enabledBorder ?? defaultBorder,
-          // focusedBorder: focusedBorder ?? defaultBorder.copyWith(
-          //   borderSide: BorderSide(
-          //     color: Theme.of(context).colorScheme.primary,
-          //     width: 1.5,
-          //   ),
-          // ),
+          enabledBorder: enabledBorder ?? defaultBorder,
+          focusedBorder: focusedBorder ?? defaultBorder.copyWith(
+            borderSide: BorderSide(
+              color: AppColors.primaryColor,
+              width: 1.5,
+            ),
+          ),
           // errorBorder: errorBorder ?? defaultBorder.copyWith(
           //   borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
           // ),
-          // disabledBorder: disabledBorder ?? defaultBorder,
+          disabledBorder: disabledBorder ?? defaultBorder,
           contentPadding: contentPadding ?? const EdgeInsets.all(16),
           isDense: false,
           counterText: counterText,

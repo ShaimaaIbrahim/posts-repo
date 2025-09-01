@@ -6,5 +6,5 @@ class ApiEndpoints {
   static const String baseUrl = 'https://jsonplaceholder.typicode.com';
 
   // posts endpoints
-  static const String postsEndpoint = '$baseUrl/posts';
+  static const String postsEndpoint = '/posts';
 }
