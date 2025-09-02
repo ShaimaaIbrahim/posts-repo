@@ -54,27 +54,64 @@ A Flutter application that displays posts from JSONPlaceholder API with search f
 ```lib/
 ├── core/
 │   ├── constants/
+│   │   ├── app_colors.dart
+│   │   ├── app_strings.dart
+│   │   ├── constants.dart
+│   │   └── endpoints.dart
 │   ├── errors/
+│   │   ├── exceptions.dart
+│   │   ├── failures.dart
+│   │   └── server_failure.dart
+│   ├── network/
+│   │   ├── network_info.dart
+│   │   └── remote_data_source.dart
 │   ├── usecases/
+│   │   └── usecase.dart
 │   └── utils/
+│       ├── input_validator.dart
+│       ├── platform_info.dart
+│       └── text_styles.dart
 ├── features/
 │   ├── posts/
 │   │   ├── data/
 │   │   │   ├── datasources/
+│   │   │   │   ├── post_local_data_source.dart
+│   │   │   │   └── post_remote_data_source.dart
 │   │   │   └── repositories/
+│   │   │       └── post_repository_impl.dart
 │   │   ├── domain/
 │   │   │   ├── entities/
+│   │   │   │   └── post_entity.dart
 │   │   │   ├── repositories/
+│   │   │   │   └── post_repository.dart
 │   │   │   └── usecases/
+│   │   │       ├── get_post.dart
+│   │   │       ├── get_posts.dart
+│   │   │       └── search_posts.dart
 │   │   └── presentation/
 │   │       ├── bloc/
-│   │       └── pages/
+│   │       │   ├── post_bloc.dart
+│   │       │   ├── post_event.dart
+│   │       │   └── post_state.dart
+│   │       ├── pages/
+│   │       │   ├── home_page.dart
+│   │       │   ├── post_detail_page.dart
+│   │       │   └── posts_list_page.dart
+│   │       └── widgets/
+│   │           ├── post_card.dart
+│   │           ├── post_list_item.dart
+│   │           └── search_bar.dart
 │   └── settings/
 │       └── presentation/
 │           ├── bloc/
+│           │   ├── language_bloc.dart
+│           │   ├── language_event.dart
+│           │   └── language_state.dart
 │           └── pages/
+│               └── settings_page.dart
 ├── injection_container.dart
-└── main.dart
+├── main.dart
+└── app.dart
 ```
 
 ## 🚀 Setup Instructions
@@ -95,13 +132,12 @@ cd posts-repo
 
 
 ### 📦 Dependencies
+
 flutter_bloc: ^8.1.3
 
 equatable: ^2.0.5
 
 http: ^0.13.6
-
-dartz: ^0.10.1
 
 get_it: ^7.6.4
 
