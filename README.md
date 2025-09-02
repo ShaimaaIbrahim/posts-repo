@@ -148,7 +148,7 @@ intl: Any version
 ## 🔧 Key Implementation Details
 
 ### Search Functionality
-- Real-time filtering as user types
+- Real-time filtering as content search
 
 - Case-insensitive search
   
