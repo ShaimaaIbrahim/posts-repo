@@ -173,10 +173,10 @@ intl: Any version
 - Loading indicators during API calls
 
  ### Shots
- ### Home
+ - Home
 ![HomeScreen](./shots/home.png)
 
-### Settings
+- Settings
 ![SettingsScreen](./shots/setting.png)
 
 
