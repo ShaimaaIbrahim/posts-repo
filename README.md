@@ -172,7 +172,7 @@ intl: Any version
 
 - Loading indicators during API calls
 
- ### Shots
+ ## Shots
  - Home
 ![HomeScreen](./shots/home.png)
 
