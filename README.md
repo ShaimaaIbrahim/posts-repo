@@ -135,7 +135,14 @@ intl: Any version
 - Empty state UI for no posts or no search results
 
 - Loading indicators during API calls
-  
+
+ ### Shots
+ ### Home
+![HomeScreen](./shots/home.png)
+
+### Settings
+![SettingsScreen](./shots/setting.png)
+
 
 ### 👩‍💻 Author
 Shaimaa Ibrahim
