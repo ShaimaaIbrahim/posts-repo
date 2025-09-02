@@ -16,6 +16,9 @@ class AppTheme {
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.primaryColor,
       ),
+      // inputDecorationTheme: InputDecorationTheme(
+      //   hintStyle: TextStyle(color: AppColors.primaryColor),
+      // ),
     );
   }
 

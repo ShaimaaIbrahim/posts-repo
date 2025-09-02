@@ -40,8 +40,13 @@ class _AppContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: _languageBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LanguageBloc>.value(value: _languageBloc),
+        BlocProvider(
+          create: (context) => PostBloc(loadPosts: LoadPosts(diInstance<PostRepository>()))..add(LoadPostsEvent())
+        )
+      ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         bloc: _languageBloc,
         builder: (context, state) {

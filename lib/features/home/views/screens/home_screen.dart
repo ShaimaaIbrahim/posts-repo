@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get_it/get_it.dart';
-import 'package:posts_repo/core/di/dependency_injector.dart';
 import 'package:posts_repo/core/ui/custom_text.dart';
 import 'package:posts_repo/core/ui/custom_text_form_field.dart';
 import 'package:posts_repo/core/ui/space.dart';
-import 'package:posts_repo/domain/repository/post_repository.dart';
 import 'package:posts_repo/domain/use_case/load_posts.dart';
 import 'package:posts_repo/features/home/view_models/post_bloc.dart';
 import 'package:posts_repo/features/home/view_models/post_event.dart';
 import 'package:posts_repo/features/home/view_models/post_stata.dart';
+import 'package:posts_repo/features/home/views/widgets/empty_state_widget.dart';
 
 import '../../../../core/constants/app_colors.dart';
 
 import '../../../../gen/app_localizations.dart';
+import '../widgets/loading_state.dart';
 import '../widgets/post_card_item.dart';
 
 
@@ -27,7 +27,7 @@ class HomeScreen extends HookWidget {
 
     final _formKey = GlobalKey<FormState>();
     var postTextEditingController = useTextEditingController();
-
+  
     return Scaffold(
       appBar: AppBar(title:  Text(AppLocalizations.of(context)!.home),
           backgroundColor: AppColors.secondaryColor,
@@ -38,11 +38,9 @@ class HomeScreen extends HookWidget {
       body: SafeArea(
         child: Form(
           key: _formKey,
-          child:  BlocProvider<PostBloc>(
-          create: (context) => PostBloc(loadPosts: GetIt.I<LoadPosts>())..add(LoadPostsEvent()),
-            child: Padding(
-                padding: EdgeInsets.all(10),
-                child: SingleChildScrollView(
+          child: Padding(
+              padding: EdgeInsets.all(10),
+              child: SingleChildScrollView(
                   child: BlocBuilder<PostBloc, PostState>(
                     builder: (context, state){
                       return Column(
@@ -50,22 +48,23 @@ class HomeScreen extends HookWidget {
                           CustomTextField(
                             controller: postTextEditingController,
                             prefixIcon: Icon(Icons.search),
-                            suffixIcon: postTextEditingController.text.isNotEmpty ? 
+                            fillColor: AppColors.white,
+                            suffixIcon: postTextEditingController.text.isNotEmpty ?
                             InkWell(
-                              onTap: (){
-                                postTextEditingController.clear();
-                                context.read<PostBloc>().add(LoadPostsEvent());
-                              },
-                              child: Icon(Icons.close)
-                            )
-                                :Container(),
+                                onTap: (){
+                                  postTextEditingController.clear();
+                                  context.read<PostBloc>().add(LoadPostsEvent());
+                                },
+                                child: Icon(Icons.close)
+                            ) :Container(),
+                            hintText: AppLocalizations.of(context)!.searchHint,
                             onChanged: (searchText) {
-                              context.read<PostBloc>().add(SearchPostsEvent(searchText));
+                              context.read<PostBloc>().add(SearchPostsEvent(searchText, postTextEditingController));
                             },
                           ),
-                         BlocBuilder<PostBloc, PostState>(
-                           builder: (context, state){
-                             if(state is PostsLoaded){
+                          BlocBuilder<PostBloc, PostState>(
+                            builder: (context, state){
+                              if(state is PostsLoaded){
                                 return Column(
                                   children: [
                                     Space(height: 16),
@@ -86,11 +85,18 @@ class HomeScreen extends HookWidget {
                                     ),
                                     Space(height: 20),
                                     SizedBox(
-                                       height: MediaQuery.of(context).size.height+10,
-                                        child: BlocBuilder<PostBloc, PostState>(
-                                          builder: (ctx, state){
-                                            if(state is PostsLoaded){
-                                              return state.posts.isEmpty ? Container():ListView.builder(
+                                        height: MediaQuery.of(context).size.height-180,
+                                        child: switch(state){
+                                          PostsLoading() => LoadingState(),
+                                          PostsLoaded() => state.posts.isEmpty ? EmptyStateWidget() :
+                                          RefreshIndicator(
+                                             onRefresh: () async {
+                                               // Trigger refresh by adding LoadPostsEvent
+                                               context.read<PostBloc>().add(LoadPostsEvent());
+                                               // Wait a moment to allow the refresh indicator to show
+                                               await Future.delayed(Duration(milliseconds: 500));
+                                             },
+                                              child: ListView.builder(
                                                 itemCount: (state.posts.length),
                                                 itemBuilder: (context, index) {
                                                   var post = state.posts[index];
@@ -99,27 +105,22 @@ class HomeScreen extends HookWidget {
                                                       post: post
                                                   );
                                                 },
-                                              );
-                                            }
-                                            return Container();
-                                          },
-                                        )
+                                              )
+                                          ),
+                                          _ => Container()
+                                        },
                                     )
                                   ],
                                 );
-                             }
-                             if(state is PostsLoading){
-                               return Center(child: CircularProgressIndicator());
-                             }
-                             return Container();
-                           },
-                         )
+                              }
+                              return Container();
+                            },
+                          )
                         ],
                       );
-                    }, 
+                    },
                   )
-                )
-            )
+              )
           )
         )
       ),

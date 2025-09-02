@@ -1,7 +1,10 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:posts_repo/core/ui/custom_text.dart';
+import 'package:posts_repo/gen/app_localizations.dart';
 
 import '../constants/app_colors.dart';
 
@@ -150,7 +153,7 @@ class CustomTextField extends StatelessWidget {
     this.spellCheckConfiguration,
     this.undoController,
   });
-
+  
   @override
   Widget build(BuildContext context) {
     final defaultBorder = OutlineInputBorder(
@@ -158,92 +161,83 @@ class CustomTextField extends StatelessWidget {
       borderSide: BorderSide(color: Colors.grey.shade400),
     );
 
-    return Container(
-      margin: margin,
-      decoration: BoxDecoration(
-          color: AppColors.grayColor,
-          borderRadius: BorderRadius.all(Radius.circular(10))
-      ),
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          hintText: hintText,
-          labelText: labelText,
-          helperText: helperText,
-          errorText: errorText,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          prefixText: prefixText,
-          suffixText: suffixText,
-          prefix: prefix,
-          suffix: suffix,
-          filled: filled,
-          fillColor: fillColor,
-          border: InputBorder.none,
-          //border: border ?? defaultBorder,
-          enabledBorder: enabledBorder ?? defaultBorder,
-          focusedBorder: focusedBorder ?? defaultBorder.copyWith(
-            borderSide: BorderSide(
-              color: AppColors.primaryColor,
-              width: 1.5,
-            ),
+    return TextField(
+      controller: controller,
+      maxLines: null, // Allows unlimited lines
+      decoration: InputDecoration(
+         hintText: AppLocalizations.of(context)!.searchHint,
+        // hintStyle: TextStyle(
+        //   overflow: TextOverflow.ellipsis, // ← Adds "..." if text is too long
+        // ),
+        //hint: ConstrainedBox(constraints: BoxConstraints(maxWidth: 200),child: Text(AppLocalizations.of(context)!.searchHint)),
+        labelText: labelText,
+        hintMaxLines: 1,
+        errorText: errorText,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        prefixText: prefixText,
+        suffixText: suffixText,
+        prefix: prefix,
+        suffix: suffix,
+        border: border ?? defaultBorder,
+        enabledBorder: enabledBorder ?? defaultBorder,
+        focusedBorder: focusedBorder ?? defaultBorder.copyWith(
+          borderSide: BorderSide(
+            color: AppColors.primaryColor,
+            width: 1.5,
           ),
-          // errorBorder: errorBorder ?? defaultBorder.copyWith(
-          //   borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
-          // ),
-          disabledBorder: disabledBorder ?? defaultBorder,
-          contentPadding: contentPadding ?? const EdgeInsets.all(16),
-          isDense: false,
-          counterText: counterText,
-          errorMaxLines: errorMaxLines,
-          hintStyle: hintStyle,
-          labelStyle: labelStyle,
-          helperStyle: helperStyle,
-          errorStyle: errorStyle,
         ),
-        obscureText: obscureText,
-        enabled: enabled,
-        maxLines: maxLines,
-        minLines: minLines,
-        maxLength: maxLength,
-        keyboardType: keyboardType,
-        textInputAction: textInputAction,
-        textCapitalization: textCapitalization,
-        style: style,
-        validator: validator,
-        onChanged: onChanged,
-        onEditingComplete: onEditingComplete,
-        onFieldSubmitted: onSubmitted,
-        inputFormatters: inputFormatters,
-        autofocus: autofocus,
-        autocorrect: autocorrect,
-        enableSuggestions: enableSuggestions,
-        focusNode: focusNode,
-        readOnly: readOnly,
-        initialValue: initialValue,
-        keyboardAppearance: keyboardAppearance,
-        textAlign: textAlign,
-        textAlignVertical: textAlignVertical,
-        cursorWidth: cursorWidth!,
-        cursorHeight: cursorHeight,
-        cursorRadius: cursorRadius,
-        cursorColor: cursorColor ?? Theme.of(context).colorScheme.primary,
-        selectionHeightStyle: selectionHeightStyle,
-        selectionWidthStyle: selectionWidthStyle,
-        strutStyle: strutStyle,
-        showCursor: showCursor,
-        expands: expands,
-        autofillHints: autofillHints,
-        enableInteractiveSelection: enableInteractiveSelection,
-        selectionControls: selectionControls,
-        // contextMenuBuilder: contextMenuBuilder,
-        clipBehavior: clipBehavior,
-        restorationId: restorationId,
-        scribbleEnabled: scribbleEnabled,
-        canRequestFocus: canRequestFocus,
-        spellCheckConfiguration: spellCheckConfiguration,
-        undoController: undoController,
+        errorBorder: errorBorder ?? defaultBorder.copyWith(
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+        ),
+        disabledBorder: disabledBorder ?? defaultBorder,
+        contentPadding: contentPadding ?? const EdgeInsets.all(16),
+        isDense: false,
+        counterText: counterText,
+        errorMaxLines: errorMaxLines,
+        //hintStyle: TextStyle(color: AppColors.primaryColor, fontSize: 10),
+        labelStyle: labelStyle,
+        helperStyle: helperStyle,
+        errorStyle: errorStyle,
       ),
+      obscureText: obscureText,
+      enabled: enabled,
+      minLines: minLines,
+      maxLength: maxLength,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+      textCapitalization: textCapitalization,
+      style: style,
+      onChanged: onChanged,
+      onEditingComplete: onEditingComplete,
+      inputFormatters: inputFormatters,
+      autofocus: autofocus,
+      autocorrect: autocorrect,
+      enableSuggestions: enableSuggestions,
+      focusNode: focusNode,
+      readOnly: readOnly,
+      keyboardAppearance: keyboardAppearance,
+      textAlign: textAlign,
+      textAlignVertical: textAlignVertical,
+      cursorWidth: cursorWidth!,
+      cursorHeight: cursorHeight,
+      cursorRadius: cursorRadius,
+      cursorColor: cursorColor ?? Theme.of(context).colorScheme.primary,
+      selectionHeightStyle: selectionHeightStyle,
+      selectionWidthStyle: selectionWidthStyle,
+      strutStyle: strutStyle,
+      showCursor: showCursor,
+      expands: expands,
+      autofillHints: autofillHints,
+      enableInteractiveSelection: enableInteractiveSelection,
+      selectionControls: selectionControls,
+      // contextMenuBuilder: contextMenuBuilder,
+      clipBehavior: clipBehavior,
+      restorationId: restorationId,
+      scribbleEnabled: scribbleEnabled,
+      canRequestFocus: canRequestFocus,
+      spellCheckConfiguration: spellCheckConfiguration,
+      undoController: undoController,
     );
   }
 }

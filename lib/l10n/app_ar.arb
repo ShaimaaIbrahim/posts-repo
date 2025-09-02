@@ -3,13 +3,14 @@
   "home": "",
   "searchPosts": "",
   "clear": "",
-  "itemsInSearch": "Found {itemCount} results for \"{searchText}\"",
+  "itemsInSearch": "تم العثور على {itemCount} نتيجة لـ \"{searchText}\"",
   "home": "الرئيسية",
   "settings": "الإعدادات",
   "changeLanguage": "اختر لغتك المفضلة:",
   "language": "اللغة",
   "english": "English",
   "arabic": "العربية",
-  "clear":""
+  "clear": "مسح",
+  "searchHint": "...ابحث في المنشورات"
   
 }

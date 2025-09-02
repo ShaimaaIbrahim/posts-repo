@@ -151,6 +151,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'العربية'**
   String get arabic;
+
+  /// No description provided for @clear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clear;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search posts...'**
+  String get searchHint;
 }
 
 class _AppLocalizationsDelegate

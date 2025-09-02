@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:posts_repo/core/constants/app_colors.dart';
 import 'package:posts_repo/core/ui/custom_text.dart';
+import 'package:posts_repo/features/home/view_models/post_bloc.dart';
+import 'package:posts_repo/features/home/view_models/post_event.dart';
+import 'package:posts_repo/features/home/view_models/post_stata.dart';
 
 import '../../view_models/language/language_bloc.dart';
 
@@ -12,20 +15,24 @@ class LanguageBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LanguageBloc, LanguageState>(
+    return BlocBuilder<PostBloc, PostState>(
       builder: (context, state){
         return InkWell(
             onTap: () {
               // Toggle between Arabic and English
               context.read<LanguageBloc>().add(ChangeLanguageEvent(langCode));
+              if(state is PostsLoaded){
+                state.controller!.clear();
+                context.read<PostBloc>().add(LoadPostsEvent());
+              }
             },
             child: Container(
                 height: 45,
                 decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: state.languageCode == langCode ? AppColors.inputBorder: AppColors.white,
-                  boxShadow: state.languageCode == langCode ? null :[
+                  color: Localizations.localeOf(context).languageCode == langCode ? AppColors.inputBorder: AppColors.white,
+                  boxShadow: Localizations.localeOf(context).languageCode  == langCode ? null :[
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 1,

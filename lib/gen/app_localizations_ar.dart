@@ -27,7 +27,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String itemsInSearch(Object itemCount, Object searchText) {
-    return 'Found $itemCount results for \"$searchText\"';
+    return 'تم العثور على $itemCount نتيجة لـ \"$searchText\"';
   }
 
   @override
@@ -38,4 +38,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get arabic => 'العربية';
+
+  @override
+  String get clear => 'مسح';
+
+  @override
+  String get searchHint => '...ابحث في المنشورات';
 }

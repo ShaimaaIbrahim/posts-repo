@@ -38,4 +38,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get arabic => 'العربية';
+
+  @override
+  String get clear => 'Clear';
+
+  @override
+  String get searchHint => 'Search posts...';
 }

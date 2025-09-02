@@ -53,12 +53,13 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       
       emit(PostsLoaded(
           posts: posts,
-          postsCount: posts.length
+          postsCount: posts.length,
+          controller: event.controller
       ));
       debugPrint("count: ${posts.length}");
     } on Failure catch (e) {
       emit(PostsError(e.message));
     }
   }
-  
+      
 }
